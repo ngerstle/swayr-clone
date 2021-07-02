@@ -43,6 +43,41 @@ pub fn get_swayr_socket_path() -> String {
     )
 }
 
+fn desktop_entries() -> Vec<String> {
+    let mut dirs = vec![];
+    if let Some(dd) = directories::BaseDirs::new()
+        .map(|b| b.data_local_dir().to_string_lossy().to_string())
+    {
+        dirs.push(dd);
+    }
+    dirs.push(String::from("/usr/share/applications/"));
+
+    let mut entries = vec![];
+    for dir in dirs {
+        if let Ok(readdir) = std::fs::read_dir(dir) {
+            for entry in readdir {
+                if let Ok(e) = entry {
+                    let path = e.path();
+                    if path.is_file()
+                        && path.extension().map(|ext| ext == "desktop")
+                            == Some(true)
+                    {
+                        entries
+                            .push(path.as_path().to_string_lossy().to_string());
+                    }
+                }
+            }
+        }
+    }
+    entries
+}
+
+#[test]
+fn test_desktop_entries() {
+    let i = desktop_entries();
+    panic!("Icon: {:?}", i);
+}
+
 pub fn select_from_menu<'a, 'b, TS>(
     prompt: &'a str,
     choices: &'b [TS],

@@ -18,7 +18,7 @@
 use crate::con::DisplayFormat;
 use crate::config as cfg;
 use std::collections::HashMap;
-use std::io::Write;
+use std::io::{BufRead, Write};
 use std::process as proc;
 
 pub fn get_swayr_socket_path() -> String {
@@ -41,6 +41,86 @@ pub fn get_swayr_socket_path() -> String {
             }
         }
     )
+}
+
+fn desktop_entries() -> Vec<String> {
+    let mut dirs = vec![];
+    if let Some(dd) = directories::BaseDirs::new()
+        .map(|b| b.data_local_dir().to_string_lossy().to_string())
+    {
+        dirs.push(dd);
+    }
+    dirs.push(String::from("/usr/share/applications/"));
+
+    let mut entries = vec![];
+    for dir in dirs {
+        if let Ok(readdir) = std::fs::read_dir(dir) {
+            for entry in readdir {
+                if let Ok(e) = entry {
+                    let path = e.path();
+                    if path.is_file()
+                        && path.extension().map(|ext| ext == "desktop")
+                            == Some(true)
+                    {
+                        entries
+                            .push(path.as_path().to_string_lossy().to_string());
+                    }
+                }
+            }
+        }
+    }
+    entries
+}
+
+fn get_app_id_to_icon_map() -> HashMap<String, String> {
+    let rx = regex::Regex::new("(StartupWMClass|Icon)=(.+)").unwrap();
+    let mut map = HashMap::new();
+
+    for e in desktop_entries() {
+        if let Ok(f) = std::fs::File::open(&e) {
+            let buf = std::io::BufReader::new(f);
+            let mut app_id: Option<String> = None;
+            let mut icon: Option<String> = None;
+            for line in buf.lines() {
+                if app_id.is_some() && icon.is_some() {
+                    break;
+                }
+                if let Ok(line) = line {
+                    if let Some(cap) = rx.captures(&line) {
+                        if "StartupWMClass" == cap.get(1).unwrap().as_str() {
+                            app_id.replace(
+                                cap.get(2).unwrap().as_str().to_string(),
+                            );
+                        } else {
+                            icon.replace(
+                                cap.get(2).unwrap().as_str().to_string(),
+                            );
+                        }
+                    }
+                }
+            }
+            if icon.is_some() {
+                map.insert(
+                    app_id.unwrap_or(String::from(
+                        std::path::Path::new(&e)
+                            .with_extension("")
+                            .file_name()
+                            .unwrap()
+                            .to_string_lossy(),
+                    )),
+                    icon.unwrap(),
+                );
+            }
+        }
+    }
+
+    map
+}
+
+#[test]
+fn test_desktop_entries() {
+    let m = get_app_id_to_icon_map();
+    println!("Found {} icon entries:\n{:#?}", m.len(), m);
 }
 
 pub fn select_from_menu<'a, 'b, TS>(

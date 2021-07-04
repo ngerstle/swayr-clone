@@ -15,9 +15,13 @@
       url = "github:edolstra/flake-compat";
       flake = false;
     };
+    swayr-src = {
+       flake = false;
+       url = "git+ssh://git@git.sr.ht/~tsdh/swayr?ref=main";
+    };
   };
 
-  outputs = { self, nixpkgs, utils, rust-overlay, crate2nix, ... }:
+  outputs = { self, nixpkgs, utils, rust-overlay, crate2nix, swayr-src, ... }:
     let
       name = "swayr";
       rustChannel = "stable";
@@ -41,7 +45,7 @@
           project = pkgs.callPackage
             (generatedCargoNix {
               inherit name;
-              src = ./.;
+              src = swayr-src;
             })
             {
               defaultCrateOverrides = pkgs.defaultCrateOverrides // {

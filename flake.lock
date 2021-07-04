@@ -84,6 +84,7 @@
         "flake-compat": "flake-compat",
         "nixpkgs": "nixpkgs",
         "rust-overlay": "rust-overlay",
+        "swayr-src": "swayr-src",
         "utils": "utils"
       }
     },
@@ -104,6 +105,23 @@
         "owner": "oxalica",
         "repo": "rust-overlay",
         "type": "github"
+      }
+    },
+    "swayr-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1625143211,
+        "narHash": "sha256-Aj+fzBAbQeLGYyTM44LjnqxoA4I6j753InQNr/RunSc=",
+        "ref": "main",
+        "rev": "467a6fc74d03d11080501faf33bd6a6bd84e1f37",
+        "revCount": 103,
+        "type": "git",
+        "url": "ssh://git@git.sr.ht/~tsdh/swayr"
+      },
+      "original": {
+        "ref": "main",
+        "type": "git",
+        "url": "ssh://git@git.sr.ht/~tsdh/swayr"
       }
     },
     "utils": {

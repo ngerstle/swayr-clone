@@ -3,11 +3,11 @@
     "crate2nix": {
       "flake": false,
       "locked": {
-        "lastModified": 1625395258,
-        "narHash": "sha256-f6yjX9YH4bLqIqslfBNaiy4eNU5IE+1YwNnsUk5fEfQ=",
+        "lastModified": 1625999622,
+        "narHash": "sha256-IEObNb/E2jMonDiG1QuSCO4BpQ2zDLHBncOZMXzgXhM=",
         "owner": "kolloch",
         "repo": "crate2nix",
-        "rev": "38aba3b17a603294a72f6a820f50383ad9c969f7",
+        "rev": "3ac0cdfb0456689a8e6ab7c3839e4c497ad46327",
         "type": "github"
       },
       "original": {
@@ -49,11 +49,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1625281901,
-        "narHash": "sha256-DkZDtTIPzhXATqIps2ifNFpnI+PTcfMYdcrx/oFm00Q=",
+        "lastModified": 1625874246,
+        "narHash": "sha256-7cGgcysIXz/j/lRpJn7cNJjf0+k7sQ5EuGn62252Svw=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "09c38c29f2c719cd76ca17a596c2fdac9e186ceb",
+        "rev": "45fc7d4a35c5343e58541a7847f6415654ccbb37",
         "type": "github"
       },
       "original": {
@@ -94,11 +94,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1625364738,
-        "narHash": "sha256-TPlpEcywGnB8jNIPOlCqFVbioskGOpasrVhxdw0BHzA=",
+        "lastModified": 1625969704,
+        "narHash": "sha256-VcGpMWPULWCwfsfJHbCAJIEiIGTEed6eefapGNScojs=",
         "owner": "oxalica",
         "repo": "rust-overlay",
-        "rev": "f08a653d9d6bbf06b5cc5dd1e570f1c449acbcf3",
+        "rev": "6ec31b599cc7c73e2b3cc717a141639749c22558",
         "type": "github"
       },
       "original": {
@@ -110,11 +110,11 @@
     "swayr-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1625143211,
-        "narHash": "sha256-Aj+fzBAbQeLGYyTM44LjnqxoA4I6j753InQNr/RunSc=",
+        "lastModified": 1625944875,
+        "narHash": "sha256-IGmE04L7Rr4vq2NsHeCCECFYsBWK02wzQnMpHuhtGAU=",
         "ref": "main",
-        "rev": "467a6fc74d03d11080501faf33bd6a6bd84e1f37",
-        "revCount": 103,
+        "rev": "6ec79af97042f2d0e692ff7492a5bbf703fc6950",
+        "revCount": 123,
         "type": "git",
         "url": "ssh://git@git.sr.ht/~tsdh/swayr"
       },

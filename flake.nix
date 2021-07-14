@@ -17,7 +17,7 @@
     };
     swayr-src = {
        flake = false;
-       url = "git+ssh://git@git.sr.ht/~tsdh/swayr?ref=main";
+       url = "git+https://git@git.sr.ht/~tsdh/swayr?ref=main";
     };
   };
 

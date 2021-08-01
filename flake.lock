@@ -116,12 +116,12 @@
         "rev": "8e1de902de67ed2c50c5cc6e8c585cc1fdec66c7",
         "revCount": 135,
         "type": "git",
-        "url": "ssh://git@git.sr.ht/~tsdh/swayr"
+        "url": "https://git@git.sr.ht/~tsdh/swayr"
       },
       "original": {
         "ref": "main",
         "type": "git",
-        "url": "ssh://git@git.sr.ht/~tsdh/swayr"
+        "url": "https://git@git.sr.ht/~tsdh/swayr"
       }
     },
     "utils": {
